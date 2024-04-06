@@ -4,13 +4,14 @@ Demonstrate parsing of a string of mathematical expression
 
 Suppose a mathematical expression like ```5-3+7*8/12``` is given, generate a parse tree like below :
 
-                                    +
-                                  /   \
-                                 -     /
-                                / \   /  \
-                               5   3  *   12
-                                     / \
-                                    7   8
+                                        +
+                                     //   \\
+                                    //     \\
+                                   -          /
+                                 // \\     //  \\
+                                 5    3    *     12
+                                         // \\
+                                        7     8
 
 ## Things to be taken care of:
 1) Ambiguity
@@ -49,7 +50,11 @@ Introduce auxiliary symbols to handle associativity.
 ## Grammar c (final grammar)
 
 E -> TE'
+
 E' -> +TE' | -TE' | \n
+
 T -> FT'
+
 T' -> *FT' | /FT' | \n
-F -> N + (E)
+
+F -> N | (E)
